@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>전희재 | Jeon Heejae</title>
+    <title>20825 전희재 | Dev Portfolio</title>
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #fafafa;       /* 아주 연한 회색 (눈이 편안함) */
-            --card-bg: #ffffff;        /* 카드 배경 */
-            --text-main: #222222;      /* 진한 회색 (완전 검정보다 부드러움) */
-            --text-sub: #555555;       /* 보조 텍스트 */
-            --text-muted: #888888;     /* 날짜 등 흐린 텍스트 */
-            --accent: #2c5bf0;         /* 신뢰감 주는 차분한 블루 */
-            --border: #eaeaea;         /* 연한 테두리 */
+            --bg-color: #fdfdfd;       /* 깨끗한 종이색 */
+            --text-main: #1a1a1a;      /* 찐한 검정 */
+            --text-sub: #444444;       /* 본문용 회색 */
+            --accent: #0056b3;         /* 신뢰감 주는 딥 블루 */
+            --code-bg: #f4f4f4;        /* 코드 박스 배경 */
+            --border: #e0e0e0;         
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -23,170 +22,204 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-main);
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            line-height: 1.7;
+            font-family: 'Pretendard', sans-serif;
+            line-height: 1.6;
             font-size: 16px;
         }
 
-        /* --- 레이아웃 (중앙 정렬, 읽기 편한 폭) --- */
+        /* 링크 스타일 */
+        a { text-decoration: none; color: inherit; transition: 0.2s; }
+        a:hover { color: var(--accent); }
+
+        /* --- 레이아웃 --- */
         .wrapper {
-            max-width: 720px;
+            max-width: 800px; /* 블로그처럼 읽기 좋은 폭 */
             margin: 0 auto;
-            padding: 80px 24px;
+            padding: 60px 24px;
         }
 
-        /* --- 헤더 (심플한 이름) --- */
+        /* --- 헤더 --- */
         header {
             margin-bottom: 60px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 2px solid var(--text-main); /* 굵은 선으로 강렬하게 */
             padding-bottom: 20px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end;
         }
         
         .logo {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: var(--text-main);
-            text-decoration: none;
-            letter-spacing: -0.5px;
+            font-weight: 900;
+            font-size: 1.5rem;
+            letter-spacing: -1px;
         }
-
-        .contact-link {
+        
+        .contact-info {
+            text-align: right;
             font-size: 0.9rem;
+            font-family: 'Fira Code', monospace; /* 연락처는 코드 폰트로 간지나게 */
             color: var(--text-sub);
-            text-decoration: none;
-            transition: color 0.2s;
         }
-        .contact-link:hover { color: var(--accent); }
 
         /* --- 소개 섹션 (Intro) --- */
         .intro { margin-bottom: 80px; }
         
         .intro h1 {
-            font-family: 'Noto Serif KR', serif; /* 명조체로 진중한 느낌 */
-            font-size: 2.2rem;
-            font-weight: 700;
-            line-height: 1.3;
-            margin-bottom: 24px;
+            font-size: 2.8rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 30px;
             word-break: keep-all;
-            color: #111;
+            letter-spacing: -0.02em;
         }
 
         .intro p {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             color: var(--text-sub);
-            margin-bottom: 16px;
+            margin-bottom: 12px;
             word-break: keep-all;
         }
 
-        .intro strong { color: var(--text-main); font-weight: 600; }
-
-        /* --- 프로젝트 섹션 --- */
-        .section-title {
-            font-size: 0.9rem;
-            font-weight: 700;
+        .intro-highlight {
+            background: rgba(0, 86, 179, 0.1);
             color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 30px;
-            display: block;
+            padding: 0 4px;
+            font-weight: 700;
         }
 
-        .project-list {
-            display: flex;
-            flex-direction: column;
-            gap: 60px;
+        /* --- 프로젝트 섹션 --- */
+        .section-label {
+            font-family: 'Fira Code', monospace;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 40px;
+            display: block;
+            border-left: 4px solid var(--accent);
+            padding-left: 12px;
+            font-size: 1.1rem;
         }
 
         .project-item {
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 40px;
+            margin-bottom: 60px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+            background: #fff;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .project-item:last-child { border-bottom: none; }
+        
+        .project-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
 
-        .project-meta {
+        .project-header {
             display: flex;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 12px;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .project-title {
+            font-size: 1.6rem;
+            font-weight: 800;
+        }
+
+        .tags {
+            display: flex;
+            gap: 8px;
+            font-family: 'Fira Code', monospace;
             font-size: 0.85rem;
         }
 
-        .project-year {
-            color: var(--text-muted);
-            font-family: 'Noto Serif KR', serif;
-            font-style: italic;
+        .tag {
+            background: var(--code-bg);
+            padding: 4px 8px;
+            border-radius: 4px;
+            color: var(--text-sub);
         }
 
-        .project-tag {
-            background: #f0f4ff;
-            color: var(--accent);
-            padding: 2px 8px;
-            border-radius: 4px;
+        .project-summary {
+            font-size: 1.05rem;
+            color: var(--text-sub);
+            margin-bottom: 24px;
             font-weight: 500;
         }
 
-        .project-item h2 {
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-
-        .project-desc {
-            color: var(--text-sub);
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-
-        /* 자세히 보기 (토글 스타일 대신 링크 스타일) */
-        .details {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
+        /* --- 상세 내용 (Details) --- */
+        details {
+            background: #fafafa;
             border-radius: 8px;
-            padding: 24px;
-            margin-top: 20px;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        summary {
+            font-weight: 700;
+            color: var(--accent);
+            list-style: none; /* 기본 화살표 제거 (커스텀 가능) */
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        summary::after {
+            content: "▼";
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+        
+        details[open] summary::after {
+            transform: rotate(180deg);
+        }
+        
+        details[open] summary {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .detail-content h3 {
+            font-size: 1.1rem;
+            margin: 25px 0 10px 0;
+            color: #222;
+            border-left: 3px solid var(--text-main);
+            padding-left: 10px;
+        }
+        
+        .detail-content h3:first-child { margin-top: 10px; }
+
+        .detail-content p {
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 0.95rem;
+            text-align: justify;
+        }
+
+        .detail-content ul {
+            padding-left: 20px;
+            margin-bottom: 15px;
+            color: #555;
             font-size: 0.95rem;
         }
         
-        .details h3 {
-            font-size: 1.1rem;
-            margin: 24px 0 12px 0;
-            color: var(--text-main);
-        }
-        .details h3:first-child { margin-top: 0; }
-
-        .details p { margin-bottom: 12px; color: var(--text-sub); }
-        .details ul { list-style: none; padding-left: 0; }
-        .details li { 
-            position: relative; 
-            padding-left: 18px; 
-            margin-bottom: 8px; 
-            color: var(--text-sub);
-        }
-        .details li::before {
-            content: "•";
-            color: var(--accent);
-            position: absolute;
-            left: 0;
-            top: 0;
-        }
+        .detail-content li { margin-bottom: 5px; }
 
         /* --- Footer --- */
         footer {
             margin-top: 100px;
-            padding-top: 40px;
             border-top: 1px solid var(--border);
+            padding-top: 30px;
             text-align: center;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+            color: #888;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 600px) {
-            .wrapper { padding: 40px 20px; }
-            .intro h1 { font-size: 1.8rem; }
+            .intro h1 { font-size: 2rem; }
+            .project-header { flex-direction: column; }
         }
     </style>
 </head>
@@ -195,98 +228,132 @@
 <div class="wrapper">
     
     <header>
-        <a href="#" class="logo">Jeon Heejae</a>
-        <a href="mailto:25_jhj0105@dshs.kr" class="contact-link">Contact</a>
+        <div class="logo">JEON HEEJAE.</div>
+        <div class="contact-info">
+            20825 전희재<br>
+            010-2693-2953<br>
+            <a href="mailto:25_jhj0105@dshs.kr">25_jhj0105@dshs.kr</a>
+        </div>
     </header>
 
     <section class="intro">
         <h1>
-            불편함을 지나치지 않고,<br>
-            기술로 다듬어가는<br>
-            고등학생 개발자 전희재입니다.
+            코드는 거짓말을 하지 않는다.<br>
+            <span style="color: var(--accent);">집요하게 파고드는</span> 개발자.
         </h1>
         <p>
-            화려한 코드나 복잡한 알고리즘보다 더 중요한 것은 <strong>'이 기술이 왜 필요한가'</strong>에 대한 물음이라고 믿습니다.
+            안녕하세요, <strong>'대충'이라는 말을 제일 싫어하는 20825 전희재</strong>입니다.
         </p>
         <p>
-            일상 속의 작은 불편함이나 사회적 문제들을 발견하면, 그것을 방치하기보다 제가 가진 기술로 어떻게 해결할 수 있을지 고민하는 과정을 즐깁니다. 
-            단순히 작동하는 프로그램을 넘어, 사람에게 닿는 가치를 만드는 엔지니어가 되기 위해 공부하고 기록합니다.
+            누군가 만들어둔 라이브러리를 가져다 쓰는 것에 만족하지 않습니다. 
+            <span class="intro-highlight">"이게 왜 되지?"</span> 혹은 <span class="intro-highlight">"이게 왜 안 되지?"</span>를 끝까지 물고 늘어질 때 가장 큰 재미를 느낍니다.
         </p>
-        <p style="margin-top: 24px; font-size: 0.9rem; color: var(--text-muted);">
-            대전대신고등학교 (2024~) / 관심분야: IoT, Blockchain, AI Ethics
+        <p>
+            밤새 에러와 씨름하다가 마침내 녹색 불이 들어왔을 때의 짜릿함. 그 중독성 있는 성취감을 동아리 부원들과 함께 나누고 싶습니다.
+            단순히 코딩만 하는 기계가 아니라, <strong>논리로 설계하고 결과로 증명하는 엔지니어</strong>가 되겠습니다.
         </p>
     </section>
 
     <section>
-        <span class="section-title">Selected Projects</span>
+        <span class="section-label">> console.log(My_Projects)</span>
 
-        <div class="project-list">
-
-            <article class="project-item">
-                <div class="project-meta">
-                    <span class="project-year">2025</span>
-                    <span class="project-tag">IoT / Embedded</span>
+        <article class="project-item">
+            <div class="project-header">
+                <div class="project-title">01. IoT 다인 탑승 감지 시스템</div>
+                <div class="tags">
+                    <span class="tag">Arduino</span>
+                    <span class="tag">C++</span>
+                    <span class="tag">Sensor Fusion</span>
                 </div>
-                <h2>다인 탑승 감지 시스템</h2>
-                <p class="project-desc">
-                    전동 킥보드의 2인 이상 탑승 사고를 예방하기 위해 FSR 압력 센서와 초음파 센서를 융합(Sensor Fusion)하여 제작한 오탐지 방지 시스템입니다.
-                </p>
-                
-                <div class="details">
-                    <h3>Problem & Solution</h3>
-                    <p>단순 무게 감지만으로는 물건 적재와 구분이 어려운 한계를 발견했습니다. 이에 '압력 분포'와 '탑승 공간 밀집도'라는 두 가지 변수를 교차 검증하는 알고리즘을 설계하여 정확도를 높였습니다.</p>
-                    
-                    <h3>Key Learning</h3>
+            </div>
+            <p class="project-summary">
+                "킥보드 2인 탑승, 진짜 못 막을까?"라는 호기심에서 시작해, 압력 센서와 초음파 센서를 융합하여 오탐률을 획기적으로 줄인 하드웨어 프로젝트입니다.
+            </p>
+            
+            <details>
+                <summary>개발 과정 및 상세 내용 보기 (Click)</summary>
+                <div class="detail-content">
+                    <h3>1. 문제 정의 (Why?)</h3>
+                    <p>전동 킥보드 2인 탑승 사고가 급증하고 있지만, 기존의 단순 무게 감지 방식은 무거운 짐을 실었을 때도 경고가 울리는 오작동 문제가 있었습니다. 이를 해결하기 위해 물리적 조건(무게)과 공간적 조건(부피)을 동시에 판단하는 시스템이 필요하다고 생각했습니다.</p>
+
+                    <h3>2. 해결 솔루션 (How?)</h3>
+                    <p><strong>Sensor Fusion (센서 융합):</strong> 단일 센서의 한계를 극복하기 위해 두 가지 데이터를 교차 검증하는 알고리즘을 설계했습니다.</p>
                     <ul>
-                        <li>하드웨어 센서 데이터의 노이즈 처리 및 필터링 경험</li>
-                        <li>사용자의 실제 행동 패턴을 고려한 예외 상황 처리(Edge Case) 로직 설계</li>
-                        <li>공학적 설계가 실제 사회 안전 문제에 기여하는 과정 체감</li>
+                        <li><strong>조건 1 (FSR 압력 센서):</strong> 발판의 4지점 중 3곳 이상에서 압력이 감지되는가? (사람의 발 위치 분석)</li>
+                        <li><strong>조건 2 (초음파 센서):</strong> 탑승자의 전/후방 거리가 기준치 이하로 줄어들었는가? (밀집도 분석)</li>
+                        <li><strong>판단 로직:</strong> 위 두 조건이 동시에 3회 이상(Cycle) 감지될 때만 '위험'으로 판단하여 경고음을 송출합니다.</li>
                     </ul>
-                </div>
-            </article>
 
-            <article class="project-item">
-                <div class="project-meta">
-                    <span class="project-year">2025</span>
-                    <span class="project-tag">Blockchain / Network</span>
+                    <h3>3. 배운 점 & 성과</h3>
+                    <p>센서 데이터에는 항상 노이즈(튀는 값)가 존재한다는 것을 깨달았습니다. 이를 소프트웨어적으로 필터링하는 과정을 통해, 현실 세계의 데이터를 다루는 법을 배웠습니다.</p>
                 </div>
-                <h2>P2P 탈중앙 메신저 프로토타입</h2>
-                <p class="project-desc">
-                    중앙 서버 마비 사태에서도 끊기지 않는 소통을 위해, Python Socket 통신과 블록체인 구조를 활용해 구현한 서버리스 메신저입니다.
-                </p>
+            </details>
+        </article>
 
-                <div class="details">
-                    <h3>Focus</h3>
-                    <p>편리함 뒤에 가려진 중앙 집중형 구조(SPOF)의 취약점을 분석하고, '신뢰의 프로토콜'로서 블록체인이 어떻게 데이터 주권을 개인에게 돌려줄 수 있는지 기술적으로 검증했습니다.</p>
+        <article class="project-item">
+            <div class="project-header">
+                <div class="project-title">02. P2P 블록체인 메신저</div>
+                <div class="tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Socket</span>
+                    <span class="tag">Blockchain</span>
+                </div>
+            </div>
+            <p class="project-summary">
+                카카오톡 서버 다운 사태를 보며 "중앙 서버가 없어도 대화할 수 없을까?"를 고민했습니다. Python 소켓 통신과 블록체인 원리를 직접 구현해본 도전적인 프로젝트입니다.
+            </p>
+
+            <details>
+                <summary>개발 과정 및 상세 내용 보기 (Click)</summary>
+                <div class="detail-content">
+                    <h3>1. 탐구 배경</h3>
+                    <p>대부분의 메신저는 중앙 서버(SPOF)에 의존합니다. 서버가 터지면 모든 소통이 마비되는 구조적 취약점을 해결하기 위해, Peer-to-Peer(P2P) 방식의 탈중앙화 메신저를 구상했습니다.</p>
+
+                    <h3>2. 핵심 기술 구현</h3>
                     <ul>
-                        <li>Python Socket을 활용한 Peer-to-Peer 통신 구현</li>
-                        <li>메시지 블록 해시 연결을 통한 데이터 무결성 검증</li>
+                        <li><strong>Socket Programming:</strong> 서버를 거치지 않고 Client A와 Client B가 직접 패킷을 주고받는 통신 환경을 구축했습니다.</li>
+                        <li><strong>Data Integrity (무결성):</strong> 이전 메시지의 해시값을 현재 메시지에 포함시키는 블록체인 구조(Chain)를 적용했습니다. 누군가 대화 내용을 몰래 수정하면 체인이 끊겨 즉시 발각되도록 설계했습니다.</li>
                     </ul>
-                </div>
-            </article>
 
-            <article class="project-item">
-                <div class="project-meta">
-                    <span class="project-year">2025</span>
-                    <span class="project-tag">AI / NLP / Web</span>
+                    <h3>3. 결론</h3>
+                    <p>단순히 남들이 만든 API를 쓰는 게 아니라, 네트워크 통신의 가장 밑바닥인 소켓 레벨부터 직접 짜보면서 데이터가 어떻게 흘러가는지 확실하게 이해하게 되었습니다.</p>
                 </div>
-                <h2>DealChecker: AI 계약서 분석</h2>
-                <p class="project-desc">
-                    법률 지식이 부족한 일반인을 위해, 자연어 처리 모델을 파인튜닝하여 계약서 내 독소 조항을 자동으로 탐지하고 시각화하는 웹 서비스입니다.
-                </p>
+            </details>
+        </article>
 
-                <div class="details">
-                    <h3>Impact</h3>
-                    <p>기술이 사회적 약자의 정보 비대칭 문제를 해결하는 도구가 될 수 있음을 확인했습니다. 복잡한 법률 용어를 AI가 분석하여 직관적인 위험도로 변환해 제공합니다.</p>
+        <article class="project-item">
+            <div class="project-header">
+                <div class="project-title">03. DealChecker: AI 계약서 분석</div>
+                <div class="tags">
+                    <span class="tag">AI / NLP</span>
+                    <span class="tag">Fine-Tuning</span>
+                    <span class="tag">Web</span>
                 </div>
-            </article>
+            </div>
+            <p class="project-summary">
+                어려운 법률 용어 때문에 피해를 보는 사람이 없도록, AI를 학습시켜 계약서의 독소 조항을 찾아내는 웹 서비스입니다. 기술의 사회적 가치를 실현해보고 싶었습니다.
+            </p>
 
-        </div>
+            <details>
+                <summary>개발 과정 및 상세 내용 보기 (Click)</summary>
+                <div class="detail-content">
+                    <h3>1. 프로젝트 개요</h3>
+                    <p>법률 전문가가 아니면 계약서의 '불공정 조항'을 찾아내기 어렵습니다. 이를 해결하기 위해 자연어 처리(NLP) 기술을 활용해 계약서를 자동 분석하고 위험도를 시각화하는 플랫폼을 개발했습니다.</p>
+
+                    <h3>2. 기술적 챌린지</h3>
+                    <p>일반적인 언어 모델은 법률 전문 용어에 약했습니다. 이를 해결하기 위해 불공정 약관 데이터셋을 확보하여 모델을 <strong>파인튜닝(Fine-Tuning)</strong>했고, 분석 정확도를 높이는 과정에서 AI 학습 파이프라인 전반을 경험했습니다.</p>
+
+                    <h3>3. 의의</h3>
+                    <p>단순한 코딩을 넘어, "내 기술이 누군가에게 도움이 될 수 있는가?"를 깊이 고민해본 프로젝트입니다. 웹 프론트엔드부터 AI 모델 서빙까지 전체적인 서비스 구조를 직접 설계했습니다.</p>
+                </div>
+            </details>
+        </article>
+
     </section>
 
     <footer>
-        © 2026 Jeon Heejae. <br>
-        Always questioning, Always building.
+        <p>Copyright 2026. Jeon Heejae (Daejeon Daeshin High School)</p>
+        <p style="margin-top: 10px; font-size: 0.8rem;">Ready to Debug the World.</p>
     </footer>
 
 </div>
