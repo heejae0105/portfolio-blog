@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전희재 | Jeon Heejae</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #fafafa;       /* 아주 연한 회색 (눈이 편안함) */
+            --card-bg: #ffffff;        /* 카드 배경 */
+            --text-main: #222222;      /* 진한 회색 (완전 검정보다 부드러움) */
+            --text-sub: #555555;       /* 보조 텍스트 */
+            --text-muted: #888888;     /* 날짜 등 흐린 텍스트 */
+            --accent: #2c5bf0;         /* 신뢰감 주는 차분한 블루 */
+            --border: #eaeaea;         /* 연한 테두리 */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* --- 레이아웃 (중앙 정렬, 읽기 편한 폭) --- */
+        .wrapper {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 80px 24px;
+        }
+
+        /* --- 헤더 (심플한 이름) --- */
+        header {
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .contact-link {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .contact-link:hover { color: var(--accent); }
+
+        /* --- 소개 섹션 (Intro) --- */
+        .intro { margin-bottom: 80px; }
+        
+        .intro h1 {
+            font-family: 'Noto Serif KR', serif; /* 명조체로 진중한 느낌 */
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 24px;
+            word-break: keep-all;
+            color: #111;
+        }
+
+        .intro p {
+            font-size: 1.05rem;
+            color: var(--text-sub);
+            margin-bottom: 16px;
+            word-break: keep-all;
+        }
+
+        .intro strong { color: var(--text-main); font-weight: 600; }
+
+        /* --- 프로젝트 섹션 --- */
+        .section-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 30px;
+            display: block;
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        .project-item {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 40px;
+        }
+        .project-item:last-child { border-bottom: none; }
+
+        .project-meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 0.85rem;
+        }
+
+        .project-year {
+            color: var(--text-muted);
+            font-family: 'Noto Serif KR', serif;
+            font-style: italic;
+        }
+
+        .project-tag {
+            background: #f0f4ff;
+            color: var(--accent);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .project-item h2 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .project-desc {
+            color: var(--text-sub);
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        /* 자세히 보기 (토글 스타일 대신 링크 스타일) */
+        .details {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 24px;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .details h3 {
+            font-size: 1.1rem;
+            margin: 24px 0 12px 0;
+            color: var(--text-main);
+        }
+        .details h3:first-child { margin-top: 0; }
+
+        .details p { margin-bottom: 12px; color: var(--text-sub); }
+        .details ul { list-style: none; padding-left: 0; }
+        .details li { 
+            position: relative; 
+            padding-left: 18px; 
+            margin-bottom: 8px; 
+            color: var(--text-sub);
+        }
+        .details li::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: 100px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .wrapper { padding: 40px 20px; }
+            .intro h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    
+    <header>
+        <a href="#" class="logo">Jeon Heejae</a>
+        <a href="mailto:25_jhj0105@dshs.kr" class="contact-link">Contact</a>
+    </header>
+
+    <section class="intro">
+        <h1>
+            불편함을 지나치지 않고,<br>
+            기술로 다듬어가는<br>
+            고등학생 개발자 전희재입니다.
+        </h1>
+        <p>
+            화려한 코드나 복잡한 알고리즘보다 더 중요한 것은 <strong>'이 기술이 왜 필요한가'</strong>에 대한 물음이라고 믿습니다.
+        </p>
+        <p>
+            일상 속의 작은 불편함이나 사회적 문제들을 발견하면, 그것을 방치하기보다 제가 가진 기술로 어떻게 해결할 수 있을지 고민하는 과정을 즐깁니다. 
+            단순히 작동하는 프로그램을 넘어, 사람에게 닿는 가치를 만드는 엔지니어가 되기 위해 공부하고 기록합니다.
+        </p>
+        <p style="margin-top: 24px; font-size: 0.9rem; color: var(--text-muted);">
+            대전대신고등학교 (2024~) / 관심분야: IoT, Blockchain, AI Ethics
+        </p>
+    </section>
+
+    <section>
+        <span class="section-title">Selected Projects</span>
+
+        <div class="project-list">
+
+            <article class="project-item">
+                <div class="project-meta">
+                    <span class="project-year">2025</span>
+                    <span class="project-tag">IoT / Embedded</span>
+                </div>
+                <h2>다인 탑승 감지 시스템</h2>
+                <p class="project-desc">
+                    전동 킥보드의 2인 이상 탑승 사고를 예방하기 위해 FSR 압력 센서와 초음파 센서를 융합(Sensor Fusion)하여 제작한 오탐지 방지 시스템입니다.
+                </p>
+                
+                <div class="details">
+                    <h3>Problem & Solution</h3>
+                    <p>단순 무게 감지만으로는 물건 적재와 구분이 어려운 한계를 발견했습니다. 이에 '압력 분포'와 '탑승 공간 밀집도'라는 두 가지 변수를 교차 검증하는 알고리즘을 설계하여 정확도를 높였습니다.</p>
+                    
+                    <h3>Key Learning</h3>
+                    <ul>
+                        <li>하드웨어 센서 데이터의 노이즈 처리 및 필터링 경험</li>
+                        <li>사용자의 실제 행동 패턴을 고려한 예외 상황 처리(Edge Case) 로직 설계</li>
+                        <li>공학적 설계가 실제 사회 안전 문제에 기여하는 과정 체감</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="project-item">
+                <div class="project-meta">
+                    <span class="project-year">2025</span>
+                    <span class="project-tag">Blockchain / Network</span>
+                </div>
+                <h2>P2P 탈중앙 메신저 프로토타입</h2>
+                <p class="project-desc">
+                    중앙 서버 마비 사태에서도 끊기지 않는 소통을 위해, Python Socket 통신과 블록체인 구조를 활용해 구현한 서버리스 메신저입니다.
+                </p>
+
+                <div class="details">
+                    <h3>Focus</h3>
+                    <p>편리함 뒤에 가려진 중앙 집중형 구조(SPOF)의 취약점을 분석하고, '신뢰의 프로토콜'로서 블록체인이 어떻게 데이터 주권을 개인에게 돌려줄 수 있는지 기술적으로 검증했습니다.</p>
+                    <ul>
+                        <li>Python Socket을 활용한 Peer-to-Peer 통신 구현</li>
+                        <li>메시지 블록 해시 연결을 통한 데이터 무결성 검증</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article class="project-item">
+                <div class="project-meta">
+                    <span class="project-year">2025</span>
+                    <span class="project-tag">AI / NLP / Web</span>
+                </div>
+                <h2>DealChecker: AI 계약서 분석</h2>
+                <p class="project-desc">
+                    법률 지식이 부족한 일반인을 위해, 자연어 처리 모델을 파인튜닝하여 계약서 내 독소 조항을 자동으로 탐지하고 시각화하는 웹 서비스입니다.
+                </p>
+
+                <div class="details">
+                    <h3>Impact</h3>
+                    <p>기술이 사회적 약자의 정보 비대칭 문제를 해결하는 도구가 될 수 있음을 확인했습니다. 복잡한 법률 용어를 AI가 분석하여 직관적인 위험도로 변환해 제공합니다.</p>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Jeon Heejae. <br>
+        Always questioning, Always building.
+    </footer>
+
+</div>
+
+</body>
+</html>
